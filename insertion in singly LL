@@ -1,0 +1,150 @@
+class  Node{
+    int data;
+    Node next;
+    Node(int data,Node next)
+    {
+        this.data=data;
+        this.next=next;
+    }
+}
+class ll{
+
+    static Node Createll(int[] arr)
+    {
+        Node head= new Node(arr[0],null);
+        Node mover=head;
+        for(int i=1;i<arr.length;i++)
+        {
+            Node temp=new Node(arr[i],null);
+            mover.next=temp;
+            mover=temp;
+
+        }
+        return head;
+    }
+    static  Node headins(Node head,int data)
+    {
+        Node temp= new Node(data,head);
+
+        return temp;
+
+    }
+    static Node tailins(Node head,int data){
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+        }
+       Node last=new Node(data,null);
+        temp.next=last;
+        return head;
+    }
+    static Node indexins(Node head,int data,int index)
+    {
+        Node temp=head;
+        Node indi= new Node(data,null);
+        if(head==null){
+            if(index==1) {
+                return indi;
+            }
+            else{
+                return null;
+            }
+        }
+        if(index==1)
+        {
+            indi.next=head;
+            return indi;
+        }
+        int count=0;
+        while(temp!=null)
+        {
+            count++;
+            if(count==index-1)
+            {
+                indi.next=temp.next;
+                temp.next=indi;
+            }
+            temp=temp.next;
+        }
+
+        return head;
+    }
+    static Node insbef(Node head,int data,int before)
+    {
+
+        Node p=new Node(data,null);
+        Node temp=head;
+        Node prev=null;
+        if(head==null){
+            return null;
+        }
+        if(head.data== before)
+        {
+            p.next=head;
+            return p;
+        }
+        while(temp.next!=null){
+            if(temp.data==before)
+            {
+                p.next=prev.next;
+                prev.next=p;
+            }
+            prev =temp;
+            temp=temp.next;
+
+
+
+        }
+        return head;
+
+    }
+
+    public static void main(String[] args) {
+        int[] arr ={11,22,33,44};
+        Node header=Createll(arr);
+        Node temp=header;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+        Node headins=headins(header,9);
+        Node a=headins;
+        while(a!=null)
+        {
+            System.out.print(a.data+" ");
+            a=a.next;
+        }
+        System.out.println();
+        Node lins=tailins(header,88);
+        Node b=lins;
+        while(b!=null)
+        {
+            System.out.print(b.data+" ");
+            b=b.next;
+        }
+        System.out.println();
+        Node indin=indexins(header,8,6);
+        while(indin!=null)
+        {
+            System.out.print(indin.data+" ");
+            indin=indin.next;
+        }
+        System.out.println();
+
+
+
+
+
+
+        Node c=insbef(header,6,11);
+        while(c!=null)
+        {
+            System.out.print(c.data+" ");
+            c=c.next;
+        }
+    }
+}
+
