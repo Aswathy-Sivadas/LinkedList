@@ -1,0 +1,158 @@
+class Node{
+    int data;
+    Node next;
+    Node(int data, Node next)
+    {
+        this.data=data;
+        this.next=next;
+    }
+}
+class ll
+{
+    private static Node Createll(int[] arr)
+    {
+        Node head=new Node(arr[0],null);
+        Node mover= head;
+        for(int i=1;i<arr.length;i++)
+        {
+            Node temp= new Node(arr[i],null);
+            mover.next=temp;
+            mover=temp;
+        }
+
+        return head;
+    }
+    static int  lengthll(Node head)
+    {
+        Node temp=head;
+        int count=0;
+        while(temp!=null)
+        {
+            count++;
+            temp=temp.next;
+        }
+        return count;
+    }
+    static String searching(Node head,int ele)
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            if(temp.data==ele)
+            {
+                return (ele+"is present");
+            }
+            temp=temp.next;
+        }
+        return (ele + "is not present");
+    }
+    static Node headdeletion(Node head)
+    {
+        head=head.next;
+        return head;
+    }
+    static Node taildelete(Node head)
+    {
+        Node temp=head;
+        if(head.next==null || head==null ){
+            return null;
+        }
+        while(temp.next.next!=null)
+        {
+            temp=temp.next;
+        }
+        temp.next=null;
+        return head;
+    }
+    static Node inddel(Node head,int index)
+    {
+        if(head==null){
+            return head;
+        }
+        if(index==1)
+        {
+            head=head.next;
+            return head;
+        }
+        int count=0;Node temp=head;Node prev=null;
+        while(temp!=null)
+        {
+            count++;
+            if(count==index)
+            {
+                prev.next=prev.next.next;
+
+            }
+            prev=temp;
+            temp=temp.next;
+        }
+
+        return head;
+    }
+    static Node sele(Node head,int ele)
+    {
+        Node temp=head;Node prev=null;
+        if(head==null){
+            return head;
+        }
+        if(head.data==ele){
+            head=head.next;
+            return head;
+        }
+        while(temp!=null)
+        {
+            if(temp.data==ele)
+            {
+                prev.next=temp.next;
+
+            }
+            prev=temp;
+            temp=temp.next;
+
+        }
+        return head;
+    }
+
+    public static void main(String[] args) {
+        int[] arr={22,33,44,55,66};
+        Node header=Createll(arr);
+        Node temp=header;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+        String there= searching(header,66);
+        System.out.println(there);
+
+        int l=lengthll(header);
+        Node nhead=headdeletion(header);
+         temp=nhead;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        temp=header;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+
+        System.out.println();
+        Node dele=sele(header,6);
+        temp=dele;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+
+
+
+        System.out.println();
+        System.out.println("count = "+l);
+    }
+}
