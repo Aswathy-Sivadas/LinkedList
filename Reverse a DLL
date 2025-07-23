@@ -12,10 +12,9 @@ class Solution {
           head.next=temp;
           head=head.prev;
        }
-        if(temp!=null)
-        {
-       return temp.prev;}
-       return head;
         
+       return temp.prev;
 }
+       
+        
 }
